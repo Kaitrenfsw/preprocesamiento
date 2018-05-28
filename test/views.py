@@ -145,7 +145,24 @@ def lemmatize_verbs(words):
 		lemmas.append(lemma)
 	return lemmas
 
+#Remove verbs from tokenized list of words
+def remove_verbs(words):
+	tagged = nltk.pos_tag(words)
+	new_words = []
+	for tag_word in tagged:
+		if not tag_word[1].startswith('V'):
+			new_words.append(tag_word[0])
 
+	return new_words
+
+#Remove numbers from tokenized list of words (full digit words only)
+def remove_numbers(words):
+	new_words = []
+	for word in words:
+		if not word.isdigit():
+			new_words.append(word)
+
+	return new_words
 
 #Execute all the preprocessing steps in a list of tokenized words.
 def pre_processing_text(words):
@@ -153,9 +170,8 @@ def pre_processing_text(words):
 	words = to_lowercase(words)
 	words = remove_punctuation(words)
 	words = remove_stopwords(words)
+	words = remove_verbs(words)
+	words = remove_numbers(words)
 	return words
 
-
-
-def main():
 
