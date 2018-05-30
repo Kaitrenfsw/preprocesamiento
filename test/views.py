@@ -201,5 +201,3 @@ def pre_processing_text(words):
 	words = remove_verbs(words)
 	words = remove_numbers(words)
 	return words
-
-

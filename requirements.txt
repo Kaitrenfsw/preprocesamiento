@@ -6,5 +6,6 @@ pytz==2018.4
 urllib3
 nltk
 contractions
-pymongo
 request
+mongoengine==0.15.0
+pymongo==3.6.0
