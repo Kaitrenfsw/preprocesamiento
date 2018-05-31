@@ -37,7 +37,7 @@ def test(param):
 
 def get_data(request):
 
-	# client = MongoClient()
+	# client = MongoClient("db_mongo", 27017)  
 	# db = client.knowledge_base
 	# documents = db.raw_data.find({})
 	# doc_list = copy.copy(documents)
