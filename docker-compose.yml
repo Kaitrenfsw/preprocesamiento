@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db_preprocesing:
+    image: postgres
+    networks:
+      - shared   
+
+  preprocesamiento:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    networks:
+      - shared      
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db_preprocesing
+      - db_mongo
+
+  db_mongo:
+    image: mongo:latest
+    volumes:
+      - ./.docker-data/mongo:/data/db
+    command: mongod --storageEngine wiredTiger
+    ports:
+      - "27017:27017"
+    networks:
+      - shared
+      
+networks:
+  shared: 
+    external:
+      name: shared
